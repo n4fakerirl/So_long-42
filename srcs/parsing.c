@@ -6,63 +6,11 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 19:56:43 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/04 16:21:11 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/04 18:03:14 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-int	check_pe(t_game *game)
-{
-	int	i;
-	int	y;
-	int	p;
-	int	e;
-
-	i = 0;
-	p = 0;
-	e = 0;
-	while (game->map[i])
-	{
-		y = 0;
-		while (game->map[i][y])
-		{
-			if (game->map[i][y] == 'P')
-				p++;
-			else if (game->map[i][y] == 'E')
-				e++;
-			y++;
-		}
-		i++;
-	}
-	if (p != 1 || e != 1)
-		return (0);
-	return (1);
-}
-
-int	check_items(t_game *game)
-{
-	int	i;
-	int	y;
-	int	c;
-
-	i = 0;
-	c = 0;
-	while (game->map[i])
-	{
-		y = 0;
-		while (game->map[i][y])
-		{
-			if (game->map[i][y] == 'C')
-				c++;
-			y++;
-		}
-		i++;
-	}
-	if (c < 1)
-		return (0);
-	return (1);
-}
 
 void	cut_line(t_game *game)
 {
@@ -83,6 +31,39 @@ void	cut_line(t_game *game)
 	}
 }
 
+int	check_errors(t_game *game)
+{
+	cut_line(game);
+	calculate_size(game);
+	if (!check_pe(game))
+		return (ft_printf("Error\nRequired : (ONLY) 1 player && 1 exit.\n"), 0);
+	if (!check_borders(game))
+		return (ft_printf("Error\nMap is not fully closed.\n"), 0);
+	if (!check_items(game))
+		return (ft_printf("Error\nNot enough collectibles to play.\n"), 0);
+	if (!check_sq(game))
+		return (ft_printf("Error\nMap must be a square.\n"), 0);
+	if (!flood_fill(game))
+		return (ft_printf("Error\nCan't access to collectibles/exit.\n"), 0);
+	return (1);
+}
+
+int	files_err(t_game *game, char *file)
+{
+	int	fd;
+	int	size;
+
+	size = 0;
+	game->map = NULL;
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		return (ft_printf("Error\nEnter a valid file.\n"), -1);
+	size = size_map(file);
+	if (size == 0)
+		return (ft_printf("Error\nFile is empty.\n"), -1);
+	return (fd);
+}
+
 int	map_errors(t_game *game, char *file)
 {
 	int		size;
@@ -91,8 +72,8 @@ int	map_errors(t_game *game, char *file)
 	int		i;
 
 	i = 0;
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
+	fd = files_err(game, file);
+	if (fd == -1)
 		return (0);
 	size = size_map(file);
 	game->map = malloc(sizeof(char *) * (size + 1));
@@ -107,9 +88,7 @@ int	map_errors(t_game *game, char *file)
 	}
 	game->map[i] = NULL;
 	close(fd);
-	cut_line(game);
-	calculate_size(game);
-	if (!flood_fill(game))
+	if (!check_errors(game))
 		return (0);
 	return (1);
 }

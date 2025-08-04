@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 14:05:59 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/04 16:24:15 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/04 17:58:57 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ char	**copy_map(t_game *game)
 	while (i < game->map_height)
 	{
 		copy[i] = ft_strdup(game->map[i]);
+		if (!copy[i])
+			return (ft_free(copy), NULL);
 		i++;
 	}
 	copy[i] = NULL;
@@ -83,11 +85,39 @@ int	flood_fill(t_game *game)
 		while (copy[y][i])
 		{
 			if (copy[y][i] != '1' && copy[y][i] != 'X')
-				return (free(copy), 0);
+				return (ft_free(copy), 0);
 			i++;
 		}
 		y++;
 	}
-	free(copy);
+	ft_free(copy);
+	return (1);
+}
+
+int	check_pe(t_game *game)
+{
+	int	i;
+	int	y;
+	int	p;
+	int	e;
+
+	i = 0;
+	p = 0;
+	e = 0;
+	while (game->map[i])
+	{
+		y = 0;
+		while (game->map[i][y])
+		{
+			if (game->map[i][y] == 'P')
+				p++;
+			else if (game->map[i][y] == 'E')
+				e++;
+			y++;
+		}
+		i++;
+	}
+	if (p != 1 || e != 1)
+		return (0);
 	return (1);
 }

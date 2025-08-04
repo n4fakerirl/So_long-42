@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:27:11 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/04 16:15:55 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/04 18:04:40 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,10 @@ int	size_map(char *file)
 	while (line != NULL)
 	{
 		i++;
+		free(line);
 		line = get_next_line(fd);
 	}
+	close(fd);
 	return (i);
 }
 
@@ -81,5 +83,30 @@ int	check_sq(t_game *game)
 			return (0);
 		i++;
 	}
+	return (1);
+}
+
+int	check_items(t_game *game)
+{
+	int	i;
+	int	y;
+	int	c;
+
+	i = 0;
+	c = 0;
+	while (game->map[i])
+	{
+		y = 0;
+		while (game->map[i][y])
+		{
+			if (game->map[i][y] == 'C')
+				c++;
+			y++;
+		}
+		i++;
+	}
+	if (c < 1)
+		return (0);
+	game->nb_collec = c;
 	return (1);
 }

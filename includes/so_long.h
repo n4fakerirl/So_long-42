@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 16:16:19 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/04 16:00:20 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/04 18:21:43 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ typedef struct s_game
 	int		map_width;
 	int		player_posx;
 	int		player_posy;
+	int		nb_collec;
+	int		collected;
+	void	*mlx_ptr;
+	void	*mlx_win;
 
 }			t_game;
 
@@ -33,7 +37,8 @@ typedef struct s_game
 void		print_tab(char **tab);
 
 // TRUE
-
+int			check_errors(t_game *game);
+void		free_game(t_game *game);
 int			check_pe(t_game *game);
 int			check_items(t_game *game);
 int			map_errors(t_game *game, char *file);
