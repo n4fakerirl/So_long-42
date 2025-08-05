@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 14:05:59 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/04 17:58:57 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/05 21:22:34 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	flood_fill(t_game *game)
 		i = 0;
 		while (copy[y][i])
 		{
-			if (copy[y][i] != '1' && copy[y][i] != 'X')
+			if (copy[y][i] != '1' && copy[y][i] != 'X' && copy[y][i] != '0')
 				return (ft_free(copy), 0);
 			i++;
 		}
