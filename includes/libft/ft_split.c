@@ -90,12 +90,10 @@ static char	**ft_ft(char const *s, char c, char **result)
 
 char	**ft_split(char const *s, char c)
 {
-	int		i;
 	char	**result;
 	int		count;
 
 	count = count_words(s, c);
-	i = 0;
 	if (s[0] == '\0')
 	{
 		result = malloc(sizeof(char *) * 1);

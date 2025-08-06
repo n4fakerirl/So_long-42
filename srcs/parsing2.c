@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 14:05:59 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/05 21:22:34 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/06 17:13:38 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	fill(char **tab, t_game *game, int x, int y)
 	if (x < 0 || y < 0 || x >= game->map_width || y >= game->map_width)
 		return ;
 	if (tab[y][x] == 'X' || (tab[y][x] != 'P' && tab[y][x] != 'C'
-			&& tab[y][x] != 'E' && tab[y][x] != '0'))
+			&& tab[y][x] != 'E' && tab[y][x] != '0' && tab[y][x]))
 		return ;
 	tab[y][x] = 'X';
 	fill(tab, game, x + 1, y);
@@ -84,7 +84,8 @@ int	flood_fill(t_game *game)
 		i = 0;
 		while (copy[y][i])
 		{
-			if (copy[y][i] != '1' && copy[y][i] != 'X' && copy[y][i] != '0')
+			if (copy[y][i] != '1' && copy[y][i] != 'X' && copy[y][i] != '0'
+				&& copy[y][i] != 'M')
 				return (ft_free(copy), 0);
 			i++;
 		}

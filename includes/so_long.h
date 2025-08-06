@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 16:16:19 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/05 21:29:38 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/06 19:15:07 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,9 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+#include <stdbool.h>
 
 # define SPRITE_SIZE 64
-
-typedef struct s_game
-{
-	char	**map;
-	int		map_height;
-	int		map_width;
-	int		player_posx;
-	int		player_posy;
-	int		nb_collec;
-	int		collected;
-	void	*mlx_ptr;
-	void	*mlx_win;
-	void	*img_floor;
-	void	*img_player;
-	void	*img_collect;
-	void	*img_exit;
-}			t_game;
 
 typedef struct s_walls
 {
@@ -58,6 +42,30 @@ typedef struct s_walls
 	void	*simple_wall;
 }			t_walls;
 
+typedef struct s_game
+{
+	char	**map;
+	int		map_height;
+	int		map_width;
+	int		player_posx;
+	int		player_posy;
+	int		nb_collec;
+	int		collected;
+	void	*mlx_ptr;
+	void	*mlx_win;
+	void	*img_floor;
+	void	*img_player_up;
+	void	*img_player_down;
+	void	*img_player_left;
+	void	*img_player_right;
+	void	*img_collect;
+	void	*img_exit;
+	void	*img_enemy;
+	int		move;
+	t_walls	*wall;
+	bool state;
+}			t_game;
+
 int			check_errors(t_game *game);
 void		free_game(t_game *game);
 int			check_pe(t_game *game);
@@ -76,5 +84,10 @@ void		put_image(t_game *game, t_walls *wall);
 void		find_wall(t_game *game, t_walls *wall, int x, int y);
 void		draw_map(t_game *game, t_walls *wall);
 void		other_tiles3(t_game *game, t_walls *wall, int x, int y);
+int			handle_keypress(int keycode, t_game *game);
+int		try_move_up(t_game *game, t_walls *wall);
+void	loose_screen(t_game *game, int keycode);
+void	win_screen(t_game *game, int keycode);
+
 
 #endif
