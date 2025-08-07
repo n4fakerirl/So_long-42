@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 16:16:19 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/06 19:15:07 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/07 15:30:57 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,12 @@ typedef struct s_game
 	void	*img_enemy;
 	int		move;
 	t_walls	*wall;
-	bool state;
+	int state;
 }			t_game;
 
+void clear_all(t_game *game, t_walls *wall);
+void	free_map(t_game *game);
 int			check_errors(t_game *game);
-void		free_game(t_game *game);
 int			check_pe(t_game *game);
 int			check_items(t_game *game);
 int			map_errors(t_game *game, char *file);
@@ -86,8 +87,9 @@ void		draw_map(t_game *game, t_walls *wall);
 void		other_tiles3(t_game *game, t_walls *wall, int x, int y);
 int			handle_keypress(int keycode, t_game *game);
 int		try_move_up(t_game *game, t_walls *wall);
-void	loose_screen(t_game *game, int keycode);
-void	win_screen(t_game *game, int keycode);
-
+void	loose_screen(t_game *game);
+void	win_screen(t_game *game);
+int	handle_close(t_game *game);
+void	home_screen(t_game *game);
 
 #endif

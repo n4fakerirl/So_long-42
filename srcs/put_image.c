@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 17:07:20 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/06 17:05:26 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/07 14:33:11 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	find_tile(t_game *game, t_walls *wall, int i, int y)
 	else if (game->map[y][i] == 'M')
 		mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->img_enemy, i
 			* SPRITE_SIZE, y * SPRITE_SIZE);
+	else
+		return ;
 }
 
 void	draw_map(t_game *game, t_walls *wall)
@@ -45,6 +47,7 @@ void	draw_map(t_game *game, t_walls *wall)
 	int	y;
 
 	y = 0;
+	i = 0;
 	while (game->map[y] != NULL)
 	{
 		i = 0;

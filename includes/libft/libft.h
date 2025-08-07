@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 18:37:36 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/02 16:08:42 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/07 14:03:40 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 long				ft_atol(const char *nptr);
+int	count_nbr(long long nbr);
 
 #endif
