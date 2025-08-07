@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 17:50:26 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/07 15:32:10 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/07 16:43:58 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,6 @@ int	main(int ac, char **av)
 	wall = malloc(sizeof(t_walls));
 	if (!wall)
 		return (1);
-	game = malloc(sizeof(t_game));
-	ft_memset(game, 0, sizeof(t_game));
-	wall = malloc(sizeof(t_walls));
-	ft_memset(wall, 0, sizeof(t_walls));
 	if (!map_errors(game, av[1]))
 		return (free_map(game), free(game), 1);
 	game->wall = wall;
@@ -59,4 +55,9 @@ int	main(int ac, char **av)
 	home_screen(game);
 	mlx_loop(game->mlx_ptr);
 	clear_all(game, wall);
+	mlx_clear_window(game->mlx_ptr, game->mlx_win);
+    mlx_destroy_window(game->mlx_ptr, game->mlx_win);
+    mlx_destroy_display(game->mlx_ptr);
+    free(game);
+	exit(0);
 }

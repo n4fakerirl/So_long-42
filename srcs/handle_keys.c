@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:27:47 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/07 15:31:27 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/07 16:40:18 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,10 @@ int	handle_keypress(int keycode, t_game *game)
 
 	exit_code = 2;
 	if (keycode == 65307)
+	{
 		mlx_loop_end(game->mlx_ptr);
+		return (0);
+	}
 	if (game->state == 0)
 		display_menu(game, keycode);
 	else if (game->state == 1)
