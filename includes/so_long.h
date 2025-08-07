@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 16:16:19 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/07 15:30:57 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/07 17:10:47 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ typedef struct s_game
 	void	*img_collect;
 	void	*img_exit;
 	void	*img_enemy;
+	void	*img_menu;
+	void	*img_win;
+	void	*img_lose;
 	int		move;
 	t_walls	*wall;
 	int state;

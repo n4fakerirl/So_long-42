@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 18:56:11 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/07 16:42:44 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/07 17:31:13 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void destroy_game(t_game *game)
 	mlx_destroy_image(game->mlx_ptr, game->img_collect);
 	mlx_destroy_image(game->mlx_ptr, game->img_exit);
 	mlx_destroy_image(game->mlx_ptr, game->img_enemy);
+    mlx_destroy_image(game->mlx_ptr, game->img_menu);
+	//mlx_destroy_image(game->mlx_ptr, game->img_win);
+	// mlx_destroy_image(game->mlx_ptr, game->img_lose);
 }
 
 void destroy_walls(t_game *game, t_walls *wall)
@@ -46,8 +49,24 @@ void destroy_walls(t_game *game, t_walls *wall)
 
 void clear_all(t_game *game, t_walls *wall)
 {
-    destroy_game(game);
-    destroy_walls(game, wall);
-    free(game->wall);
+    if (game->state == 1)
+    {
+        destroy_game(game);
+        destroy_walls(game, wall);
+    }
+    else if (game->state == 0)
+        mlx_destroy_image(game->mlx_ptr, game->img_menu);
+    else if (game->state == 2)
+    {
+        mlx_destroy_image(game->mlx_ptr, game->img_win);
+        destroy_game(game);
+        destroy_walls(game, wall);
+    }
+    else if (game->state == 3)
+    {
+        mlx_destroy_image(game->mlx_ptr, game->img_lose);
+        destroy_game(game);
+        destroy_walls(game, wall);
+    }
     free_map(game);
 }

@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:27:47 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/07 16:40:18 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/07 17:31:42 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	try_move_up(t_game *game, t_walls *wall)
 				return (game->state = 2, 1);
 		}
 		else if (game->map[game->player_posy - 1][game->player_posx] == 'M')
-			return (game->state = 2, 0);
+			return (game->state = 3, 0);
 		if (game->map[game->player_posy][game->player_posx] != 'E')
 			game->map[game->player_posy][game->player_posx] = '0';
 		game->player_posy--;
@@ -63,7 +63,7 @@ int	try_move_down(t_game *game, t_walls *wall)
 				return (game->state = 2, 1);
 		}
 		else if (game->map[game->player_posy + 1][game->player_posx] == 'M')
-			return (game->state = 2, 0);
+			return (game->state = 3, 0);
 		if (game->map[game->player_posy][game->player_posx] != 'E')
 			game->map[game->player_posy][game->player_posx] = '0';
 		game->player_posy++;
@@ -91,7 +91,7 @@ int	try_move_right(t_game *game, t_walls *wall)
 				return (game->state = 2, 1);
 		}
 		else if (game->map[game->player_posy][game->player_posx + 1] == 'M')
-			return (game->state = 2, 0);
+			return (game->state = 3, 0);
 		if (game->map[game->player_posy][game->player_posx] != 'E')
 			game->map[game->player_posy][game->player_posx] = '0';
 		game->player_posx++;
@@ -119,7 +119,7 @@ int	try_move_left(t_game *game, t_walls *wall)
 				return (game->state = 2, 1);
 		}
 		else if (game->map[game->player_posy][game->player_posx - 1] == 'M')
-			return (game->state = 2, 0);
+			return (game->state = 3, 0);
 		if (game->map[game->player_posy][game->player_posx] != 'E')
 			game->map[game->player_posy][game->player_posx] = '0';
 		game->player_posx--;
@@ -138,7 +138,7 @@ int	try_move_left(t_game *game, t_walls *wall)
 int	display_menu(t_game *game, int keycode)
 {
 	if (keycode == 65307)
-		mlx_destroy_window(game->mlx_ptr, game->mlx_win);
+		return (mlx_loop_end(game->mlx_ptr), 0);
 	else if (keycode == 32)
 	{
 		game->state = 1;
@@ -161,10 +161,7 @@ int	handle_keypress(int keycode, t_game *game)
 
 	exit_code = 2;
 	if (keycode == 65307)
-	{
-		mlx_loop_end(game->mlx_ptr);
-		return (0);
-	}
+		return (mlx_loop_end(game->mlx_ptr), 0);
 	if (game->state == 0)
 		display_menu(game, keycode);
 	else if (game->state == 1)
