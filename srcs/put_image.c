@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 17:07:20 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/08 21:47:00 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/08 23:45:44 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,27 @@
 
 void	find_tile(t_game *game, t_walls *wall, int i, int y)
 {
-	if (game->map[y][i] == '0')
+	if (checkptr(game->img_floor, game) && game->map[y][i] == '0')
 		mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->img_floor, i
 			* SPRITE_SIZE, y * SPRITE_SIZE);
 	else if (game->map[y][i] == '1')
 		find_wall(game, wall, i, y);
-	else if (game->map[y][i] == 'C')
+	else if (checkptr(game->img_collect, game) && game->map[y][i] == 'C')
 		mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->img_collect,
 			i * SPRITE_SIZE, y * SPRITE_SIZE);
-	else if (game->map[y][i] == 'P')
+	else if (checkptr(game->img_player_down, game) && game->map[y][i] == 'P')
 		mlx_put_image_to_window(game->mlx_ptr, game->mlx_win,
 			game->img_player_down, i * SPRITE_SIZE, y * SPRITE_SIZE);
 	else if (game->map[y][i] == 'E')
 	{
-		if (game->collected == game->nb_collec)
+		if (checkptr(game->img_exit, game) && game->collected == game->nb_coll)
 			mlx_put_image_to_window(game->mlx_ptr, game->mlx_win,
 				game->img_exit, i * SPRITE_SIZE, y * SPRITE_SIZE);
-		else
+		else if (checkptr(game->img_floor, game))
 			mlx_put_image_to_window(game->mlx_ptr, game->mlx_win,
 				game->img_floor, i * SPRITE_SIZE, y * SPRITE_SIZE);
 	}
-	else if (game->map[y][i] == 'M')
+	else if (checkptr(game->img_enemy, game) && game->map[y][i] == 'M')
 		mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->img_enemy, i
 			* SPRITE_SIZE, y * SPRITE_SIZE);
 	else

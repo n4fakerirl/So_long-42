@@ -6,22 +6,11 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:27:47 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/08 21:46:30 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/09 00:02:45 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-void	print_onscreen(t_game *game)
-{
-	char	*count;
-
-	count = ft_itoa(game->move);
-	if (!count)
-		return ;
-	mlx_string_put(game->mlx_ptr, game->mlx_win, 10, 10, 0x00FF1493, count);
-	free(count);
-}
 
 int	try_move_up(t_game *game, t_walls *wall)
 {
@@ -31,7 +20,7 @@ int	try_move_up(t_game *game, t_walls *wall)
 			game->collected++;
 		else if (game->map[game->player_posy - 1][game->player_posx] == 'E')
 		{
-			if (game->collected == game->nb_collec)
+			if (game->collected == game->nb_coll)
 				return (game->state = 2, 1);
 		}
 		else if (game->map[game->player_posy - 1][game->player_posx] == 'M')
@@ -59,7 +48,7 @@ int	try_move_down(t_game *game, t_walls *wall)
 			game->collected++;
 		else if (game->map[game->player_posy + 1][game->player_posx] == 'E')
 		{
-			if (game->collected == game->nb_collec)
+			if (game->collected == game->nb_coll)
 				return (game->state = 2, 1);
 		}
 		else if (game->map[game->player_posy + 1][game->player_posx] == 'M')
@@ -87,7 +76,7 @@ int	try_move_right(t_game *game, t_walls *wall)
 			game->collected++;
 		else if (game->map[game->player_posy][game->player_posx + 1] == 'E')
 		{
-			if (game->collected == game->nb_collec)
+			if (game->collected == game->nb_coll)
 				return (game->state = 2, 1);
 		}
 		else if (game->map[game->player_posy][game->player_posx + 1] == 'M')
@@ -115,7 +104,7 @@ int	try_move_left(t_game *game, t_walls *wall)
 			game->collected++;
 		else if (game->map[game->player_posy][game->player_posx - 1] == 'E')
 		{
-			if (game->collected == game->nb_collec)
+			if (game->collected == game->nb_coll)
 				return (game->state = 2, 1);
 		}
 		else if (game->map[game->player_posy][game->player_posx - 1] == 'M')
@@ -133,26 +122,6 @@ int	try_move_left(t_game *game, t_walls *wall)
 	}
 	game->state = 1;
 	return (2);
-}
-
-int	display_menu(t_game *game, int keycode)
-{
-	if (keycode == 65307)
-		return (mlx_loop_end(game->mlx_ptr), 0);
-	else if (keycode == 32)
-	{
-		game->state = 1;
-		put_image(game, game->wall);
-		draw_map(game, game->wall);
-		return (1);
-	}
-	return (1);
-}
-
-int	handle_close(t_game *game)
-{
-	mlx_loop_end(game->mlx_ptr);
-	return (0);
 }
 
 int	handle_keypress(int keycode, t_game *game)

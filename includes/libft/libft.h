@@ -6,17 +6,17 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 18:37:36 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/07 14:03:40 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/08 23:46:08 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include "ft_printf/ft_printf.h"
+# include "get_next_line/get_next_line.h"
 # include <stdlib.h>
 # include <unistd.h>
-#include "get_next_line/get_next_line.h"
-#include "ft_printf/ft_printf.h"
 
 typedef struct s_list
 {
@@ -72,6 +72,6 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 long				ft_atol(const char *nptr);
-int	count_nbr(long long nbr);
+int					count_nbr(long long nbr);
 
 #endif

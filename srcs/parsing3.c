@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 15:27:11 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/08 22:06:39 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/08 23:28:34 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,6 @@ int	check_items(t_game *game)
 	}
 	if (c < 1)
 		return (0);
-	game->nb_collec = c;
+	game->nb_coll = c;
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 16:16:19 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/08 21:57:24 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/09 00:05:15 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_game
 	int		map_width;
 	int		player_posx;
 	int		player_posy;
-	int		nb_collec;
+	int		nb_coll;
 	int		collected;
 	void	*mlx_ptr;
 	void	*mlx_win;
@@ -70,7 +70,8 @@ typedef struct s_game
 	int		exit_code;
 }			t_game;
 
-int			check_txt(t_walls *wall, t_game *game);
+int			display_menu(t_game *game, int keycode);
+void		print_onscreen(t_game *game);
 void		clear_all(t_game *game, t_walls *wall);
 void		free_map(t_game *game);
 int			check_errors(t_game *game);
@@ -96,6 +97,8 @@ void		loose_screen(t_game *game, int init);
 void		win_screen(t_game *game, int init);
 int			handle_close(t_game *game);
 void		home_screen(t_game *game, int init);
-int			check_ptr(void *ptr, t_game *game);
+int			checkptr(void *ptr, t_game *game);
+void		center_map(t_game *game, t_walls *wall, int x, int y);
+void		other_tiles2(t_game *game, t_walls *wall, int x, int y);
 
 #endif

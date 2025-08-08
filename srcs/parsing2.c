@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 14:05:59 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/07 16:45:44 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/08 23:17:55 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ int	flood_fill(t_game *game)
 	int		y;
 
 	copy = copy_map(game);
+	if (!copy)
+		return (0);
 	find_p(game);
 	fill(copy, game, game->player_posx, game->player_posy);
 	y = 0;
