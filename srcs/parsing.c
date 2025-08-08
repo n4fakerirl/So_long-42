@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 19:56:43 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/07 16:47:52 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/08 22:08:32 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	check_errors(t_game *game)
 {
 	cut_line(game);
 	calculate_size(game);
+	if ((game->map_width * 64) > 1920 || (game->map_height * 64) > 1080)
+		return (ft_printf("Error\nMap is too big.\n"), 0);
 	if (!check_pe(game))
 		return (ft_printf("Error\nRequired : (ONLY) 1 player && 1 exit.\n"), 0);
 	if (!check_borders(game))
