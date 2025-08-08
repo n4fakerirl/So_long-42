@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_all.c                                        :+:      :+:    :+:   */
+/*   clear_all_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 18:56:11 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/08 21:48:32 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/09 00:54:33 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 void	destroy_game(t_game *game)
 {

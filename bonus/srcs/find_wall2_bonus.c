@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_wall2.c                                       :+:      :+:    :+:   */
+/*   find_wall2_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 21:28:39 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/09 00:00:13 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/09 00:54:27 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 void	other_tiles4(t_game *game, t_walls *wall, int x, int y)
 {
