@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 16:16:19 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/07 17:10:47 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/08 21:57:24 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 # include "libft/libft.h"
 # include "minilibx-linux/mlx.h"
+# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-#include <stdbool.h>
 
 # define SPRITE_SIZE 64
 
@@ -66,11 +66,13 @@ typedef struct s_game
 	void	*img_lose;
 	int		move;
 	t_walls	*wall;
-	int state;
+	int		state;
+	int		exit_code;
 }			t_game;
 
-void clear_all(t_game *game, t_walls *wall);
-void	free_map(t_game *game);
+int			check_txt(t_walls *wall, t_game *game);
+void		clear_all(t_game *game, t_walls *wall);
+void		free_map(t_game *game);
 int			check_errors(t_game *game);
 int			check_pe(t_game *game);
 int			check_items(t_game *game);
@@ -89,10 +91,11 @@ void		find_wall(t_game *game, t_walls *wall, int x, int y);
 void		draw_map(t_game *game, t_walls *wall);
 void		other_tiles3(t_game *game, t_walls *wall, int x, int y);
 int			handle_keypress(int keycode, t_game *game);
-int		try_move_up(t_game *game, t_walls *wall);
-void	loose_screen(t_game *game);
-void	win_screen(t_game *game);
-int	handle_close(t_game *game);
-void	home_screen(t_game *game);
+int			try_move_up(t_game *game, t_walls *wall);
+void		loose_screen(t_game *game, int init);
+void		win_screen(t_game *game, int init);
+int			handle_close(t_game *game);
+void		home_screen(t_game *game, int init);
+int			check_ptr(void *ptr, t_game *game);
 
 #endif

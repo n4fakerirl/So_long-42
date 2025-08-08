@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:27:47 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/07 17:31:42 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/08 21:46:30 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ int	display_menu(t_game *game, int keycode)
 		game->state = 1;
 		put_image(game, game->wall);
 		draw_map(game, game->wall);
-		return (0);
+		return (1);
 	}
 	return (1);
 }
@@ -157,27 +157,25 @@ int	handle_close(t_game *game)
 
 int	handle_keypress(int keycode, t_game *game)
 {
-	int	exit_code;
-
-	exit_code = 2;
+	game->exit_code = 2;
 	if (keycode == 65307)
 		return (mlx_loop_end(game->mlx_ptr), 0);
 	if (game->state == 0)
 		display_menu(game, keycode);
 	else if (game->state == 1)
 	{
-		if (keycode == 119 || keycode == 65362) // HAUT
-			exit_code = try_move_up(game, game->wall);
-		else if (keycode == 97 || keycode == 65361) // GAUCHE
-			exit_code = try_move_left(game, game->wall);
-		else if (keycode == 115 || keycode == 65364) // BAS
-			exit_code = try_move_down(game, game->wall);
-		else if (keycode == 100 || keycode == 65363) // DROITE
-			exit_code = try_move_right(game, game->wall);
+		if (keycode == 119 || keycode == 65362)
+			game->exit_code = try_move_up(game, game->wall);
+		else if (keycode == 97 || keycode == 65361)
+			game->exit_code = try_move_left(game, game->wall);
+		else if (keycode == 115 || keycode == 65364)
+			game->exit_code = try_move_down(game, game->wall);
+		else if (keycode == 100 || keycode == 65363)
+			game->exit_code = try_move_right(game, game->wall);
 	}
-	if (exit_code == 0)
-		loose_screen(game);
-	if (exit_code == 1)
-		win_screen(game);
+	if (game->exit_code == 0)
+		loose_screen(game, 1);
+	if (game->exit_code == 1)
+		win_screen(game, 1);
 	return (0);
 }

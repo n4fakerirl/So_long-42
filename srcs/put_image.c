@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 17:07:20 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/07 14:33:11 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/08 21:47:00 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,9 @@ void	put_image_2(t_game *game, t_walls *wall, int height, int width)
 			"assets/wall_corner1.xpm", &width, &height);
 	game->img_enemy = mlx_xpm_file_to_image(game->mlx_ptr, "assets/enemy.xpm",
 			&width, &height);
+	find_img_wall(wall, game, height, width);
+	loose_screen(game, 0);
+	win_screen(game, 0);
 }
 
 void	put_image(t_game *game, t_walls *wall)
@@ -124,5 +127,4 @@ void	put_image(t_game *game, t_walls *wall)
 	wall->full_wall = mlx_xpm_file_to_image(game->mlx_ptr,
 			"assets/full_wall.xpm", &width, &height);
 	put_image_2(game, wall, height, width);
-	find_img_wall(wall, game, height, width);
 }

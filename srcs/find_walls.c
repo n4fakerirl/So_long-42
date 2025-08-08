@@ -6,19 +6,36 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 19:10:07 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/05 21:28:36 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/08 21:59:10 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+int	check_ptr(void *ptr, t_game *game)
+{
+	if (ptr == NULL)
+	{
+		mlx_loop_end(game->mlx_ptr);
+		clear_all(game, game->wall);
+		mlx_destroy_window(game->mlx_ptr, game->mlx_win);
+		mlx_destroy_display(game->mlx_ptr);
+		free(game->mlx_ptr);
+		free(game->wall);
+		free(game);
+		exit(0);
+	}
+	return (1);
+}
 
 void	other_tiles2(t_game *game, t_walls *wall, int x, int y)
 {
 	if (y != 0 && y != (game->map_height - 1) && x != 0 && x != (game->map_width
 			- 1))
 	{
-		if (game->map[y][x - 1] == '1' && game->map[y][x + 1] == '1'
-			&& game->map[y - 1][x] != '1' && game->map[y + 1][x] != '1')
+		if (check_ptr(wall->two_walls_ud, game) && game->map[y][x - 1] == '1'
+			&& game->map[y][x + 1] == '1' && game->map[y - 1][x] != '1'
+			&& game->map[y + 1][x] != '1')
 			mlx_put_image_to_window(game->mlx_ptr, game->mlx_win,
 				wall->two_walls_ud, x * SPRITE_SIZE, y * SPRITE_SIZE);
 		else if (game->map[y][x - 1] != '1' && game->map[y][x + 1] == '1'
@@ -76,7 +93,8 @@ void	last_row(t_game *game, t_walls *wall, int x, int y)
 	{
 		if (x != 0 && x != (game->map_width - 1))
 		{
-			if (game->map[y - 1][x] != '1')
+			if (check_ptr(wall->two_walls_ud, game) && game->map[y
+				- 1][x] != '1')
 				mlx_put_image_to_window(game->mlx_ptr, game->mlx_win,
 					wall->two_walls_ud, x * SPRITE_SIZE, y * SPRITE_SIZE);
 			else
@@ -101,7 +119,8 @@ void	columns(t_game *game, t_walls *wall, int x, int y)
 		if (y == (game->map_height - 1))
 			mlx_put_image_to_window(game->mlx_ptr, game->mlx_win,
 				wall->walls_corner4, x * SPRITE_SIZE, y * SPRITE_SIZE);
-		else if (game->map[y][x + 1] != '1')
+		else if (check_ptr(wall->two_walls_ud, game) && game->map[y][x
+			+ 1] != '1')
 			mlx_put_image_to_window(game->mlx_ptr, game->mlx_win,
 				wall->two_walls_lr, x * SPRITE_SIZE, y * SPRITE_SIZE);
 		else
@@ -113,7 +132,8 @@ void	columns(t_game *game, t_walls *wall, int x, int y)
 		if (y == (game->map_height - 1))
 			mlx_put_image_to_window(game->mlx_ptr, game->mlx_win,
 				wall->walls_corner3, x * SPRITE_SIZE, y * SPRITE_SIZE);
-		else if (y != 0 && game->map[y][x - 1] != '1')
+		else if (check_ptr(wall->two_walls_ud, game) && y != 0 && game->map[y][x
+			- 1] != '1')
 			mlx_put_image_to_window(game->mlx_ptr, game->mlx_win,
 				wall->two_walls_lr, x * SPRITE_SIZE, y * SPRITE_SIZE);
 		else if (y != 0 && game->map[y][x - 1] == '1')
@@ -133,7 +153,8 @@ void	find_wall(t_game *game, t_walls *wall, int x, int y)
 		else if (x == (game->map_width - 1))
 			mlx_put_image_to_window(game->mlx_ptr, game->mlx_win,
 				wall->walls_corner2, x * SPRITE_SIZE, y * SPRITE_SIZE);
-		else if (game->map[y + 1][x] != '1')
+		else if (check_ptr(wall->two_walls_ud, game) && game->map[y
+			+ 1][x] != '1')
 			mlx_put_image_to_window(game->mlx_ptr, game->mlx_win,
 				wall->two_walls_ud, x * SPRITE_SIZE, y * SPRITE_SIZE);
 		else
