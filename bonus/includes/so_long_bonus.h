@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 16:16:19 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/09 00:49:33 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/10 00:14:37 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_game
 	t_walls	*wall;
 	int		state;
 	int		exit_code;
+	int		fd;
 }			t_game;
 
 int			display_menu(t_game *game, int keycode);

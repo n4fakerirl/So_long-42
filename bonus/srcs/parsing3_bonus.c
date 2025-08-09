@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/04 15:27:11 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/09 00:54:54 by ocviller         ###   ########.fr       */
+/*   Created: 2025/08/10 00:33:35 by ocviller          #+#    #+#             */
+/*   Updated: 2025/08/10 00:33:38 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long_bonus.h"
+#include "../includes/so_long.h"
 
 void	calculate_size(t_game *game)
 {
@@ -27,16 +27,12 @@ void	calculate_size(t_game *game)
 	game->map_height = y;
 }
 
-int	size_map(char *file)
+int	size_map(int fd)
 {
-	int		fd;
 	char	*line;
 	int		i;
 
 	i = 0;
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		return (0);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{

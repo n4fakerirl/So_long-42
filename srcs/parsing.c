@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 19:56:43 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/09 21:03:03 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/10 00:33:46 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	check_errors(t_game *game)
 
 int	files_err(t_game *game, char *file)
 {
-	int	fd;
 	int	size;
 	int	i;
 
@@ -63,39 +62,39 @@ int	files_err(t_game *game, char *file)
 		i++;
 	if (ft_strcmp(file + i, ".ber") != 0)
 		return (ft_printf("Error\nFile is not a .ber file.\n"), -1);
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
+	game->fd = open(file, O_RDONLY);
+	if (game->fd == -1)
 		return (ft_printf("Error\nEnter a valid file.\n"), -1);
-	size = size_map(file);
+	size = size_map(game->fd);
 	if (size == 0)
 		return (ft_printf("Error\nFile is empty.\n"), -1);
-	return (fd);
+	return (game->fd);
 }
 
 int	map_errors(t_game *game, char *file)
 {
 	int		size;
-	int		fd;
 	char	*line;
 	int		i;
 
 	i = 0;
-	fd = files_err(game, file);
-	if (fd == -1)
+	game->fd = files_err(game, file);
+	if (game->fd == -1)
 		return (0);
-	size = size_map(file);
+	game->fd = open(file, O_RDONLY);
+	size = size_map(game->fd);
 	game->map = malloc(sizeof(char *) * (size + 1));
 	if (!game->map)
 		return (0);
-	line = get_next_line(fd);
+	game->fd = open(file, O_RDONLY);
+	line = get_next_line(game->fd);
 	while (line != NULL)
 	{
-		game->map[i] = line;
-		line = get_next_line(fd);
-		i++;
+		game->map[i++] = line;
+		line = get_next_line(game->fd);
 	}
 	game->map[i] = NULL;
-	close(fd);
+	close(game->fd);
 	if (!check_errors(game))
 		return (0);
 	return (1);

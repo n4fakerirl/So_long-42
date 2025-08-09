@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 16:16:19 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/09 00:44:53 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/10 00:22:57 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_game
 	void	*img_exit;
 	void	*img_wall;
 	int		move;
+	int		fd;
 }			t_game;
 
 void		clear_all(t_game *game);
@@ -53,7 +54,7 @@ int			flood_fill(t_game *game);
 char		**copy_map(t_game *game);
 void		calculate_size(t_game *game);
 void		cut_line(t_game *game);
-int			size_map(char *file);
+int			size_map(int fd);
 int			check_borders(t_game *game);
 int			check_sq(t_game *game);
 void		put_image(t_game *game);
