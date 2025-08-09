@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 18:37:36 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/08 23:46:08 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/09 21:03:34 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+int					ft_strcmp(const char *s1, const char *s2);
 int					ft_isspace(int c);
 size_t				ft_strlen(const char *s);
 void				ft_bzero(void *s, size_t n);

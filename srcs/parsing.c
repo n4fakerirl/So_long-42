@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 19:56:43 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/08 22:08:32 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/09 21:03:03 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,15 @@ int	files_err(t_game *game, char *file)
 {
 	int	fd;
 	int	size;
+	int	i;
 
 	size = 0;
+	i = 0;
 	game->map = NULL;
+	while (file[i] != '.' && file[i] != '\0')
+		i++;
+	if (ft_strcmp(file + i, ".ber") != 0)
+		return (ft_printf("Error\nFile is not a .ber file.\n"), -1);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (ft_printf("Error\nEnter a valid file.\n"), -1);
