@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 17:50:26 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/09 00:38:08 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/09 04:44:09 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(int ac, char **av)
 	t_game	*game;
 
 	if (ac != 2)
-		return (ft_printf("Error\nUsage : ./so_long map/map.ber.\n"), 1);
+		return (ft_printf("Error\nUsage : ./so_long maps/map.ber.\n"), 1);
 	game = malloc(sizeof(t_game));
 	if (!game)
 		return (1);
