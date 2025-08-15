@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 00:01:08 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/09 00:55:00 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/15 13:05:34 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	checkptr(void *ptr, t_game *game)
 		clear_all(game, game->wall);
 		mlx_destroy_window(game->mlx_ptr, game->mlx_win);
 		mlx_destroy_display(game->mlx_ptr);
+		ft_printf("Error.\nSome assets are missing.\n");
 		free(game->mlx_ptr);
 		free(game->wall);
 		free(game);

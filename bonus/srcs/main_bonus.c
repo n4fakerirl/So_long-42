@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 17:50:26 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/09 01:05:52 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/15 09:18:26 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	main(int ac, char **av)
 			game->map_height * SPRITE_SIZE, "SO LONG!");
 	if (!game->mlx_win)
 		return (free_map(game), free(game), free(wall), 1);
-	mlx_key_hook(game->mlx_win, handle_keypress, game);
+	mlx_hook(game->mlx_win, KeyPress, KeyPressMask, handle_keypress, game);
 	mlx_hook(game->mlx_win, 17, 1L << 17, handle_close, game);
 	home_screen(game, 1);
 	mlx_loop(game->mlx_ptr);

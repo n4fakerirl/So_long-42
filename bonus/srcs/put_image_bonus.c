@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 17:07:20 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/09 00:54:56 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/15 13:12:28 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,10 @@ void	put_image_2(t_game *game, t_walls *wall, int height, int width)
 	find_img_wall(wall, game, height, width);
 	loose_screen(game, 0);
 	win_screen(game, 0);
+	checkptr(game->img_player_down, game);
+	checkptr(game->img_player_up, game);
+	checkptr(game->img_player_right, game);
+	checkptr(game->img_player_left, game);
 }
 
 void	put_image(t_game *game, t_walls *wall)

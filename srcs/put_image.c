@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 17:07:20 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/09 00:31:14 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/15 12:56:40 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	find_tile(t_game *game, int i, int y)
 	if (checkptr(game->img_floor, game) && game->map[y][i] == '0')
 		mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->img_floor, i
 			* SPRITE_SIZE, y * SPRITE_SIZE);
-	else if (game->map[y][i] == '1')
+	else if (checkptr(game->img_wall, game) && game->map[y][i] == '1')
 		mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->img_wall, i
 			* SPRITE_SIZE, y * SPRITE_SIZE);
 	else if (checkptr(game->img_collect, game) && game->map[y][i] == 'C')

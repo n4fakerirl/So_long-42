@@ -6,7 +6,7 @@
 /*   By: ocviller <ocviller@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 16:16:19 by ocviller          #+#    #+#             */
-/*   Updated: 2025/08/10 00:14:37 by ocviller         ###   ########.fr       */
+/*   Updated: 2025/08/15 09:18:18 by ocviller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <X11/Xlib.h>
+# include <X11/keysym.h>
 
 # define SPRITE_SIZE 64
 
