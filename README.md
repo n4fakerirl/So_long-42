@@ -59,7 +59,7 @@ Une version **bonus** ajoute des ennemis et des animations et un compteur de mou
 
 ```bash
 ./so_long maps/map1.ber || ./so_long_bonus bonus/maps/map4.ber
-
+```
 ---
 
 ## 🖼️ Note du projet
